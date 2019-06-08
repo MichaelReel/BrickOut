@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+class_name Paddle
+
 export (int) var speed = 300
 
 var velocity = Vector2()

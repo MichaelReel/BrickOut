@@ -1,12 +1,28 @@
 extends KinematicBody2D
 
-export (int) var speed = 260
+class_name Ball
 
+export (int) var speed = 260
 var velocity = Vector2(-1,-1).normalized() * speed
 
-# Called when the node enters the scene tree for the first time.
+var init_speed : int
+var init_position : Vector2
+var init_velocity : Vector2
+
 func _ready():
-	pass # Replace with function body.
+	# Saving the initial state ready for a reset
+	init_speed = speed
+	init_position = position
+	init_velocity = velocity
+
+func fell_out():
+	# Mod scores or lives or whatever
+	
+	# Reset the state
+	speed = init_speed
+	position = init_position
+	velocity = init_velocity
+	
 
 func _physics_process(delta):
 	var collision : KinematicCollision2D = move_and_collide(velocity * delta)
@@ -14,3 +30,8 @@ func _physics_process(delta):
 		# Get the normal of the collider and apply the "bounce"
 		velocity = velocity.bounce(collision.normal)
 		velocity = velocity.normalized() * speed
+		
+		print(str(collision.collider.get_class()))
+		
+		if (collision.collider.has_method("hit")):
+			collision.collider.call_deferred("hit", self)
