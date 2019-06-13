@@ -31,7 +31,5 @@ func _physics_process(delta):
 		velocity = velocity.bounce(collision.normal)
 		velocity = velocity.normalized() * speed
 		
-		print(str(collision.collider.get_class()))
-		
 		if (collision.collider.has_method("hit")):
 			collision.collider.call_deferred("hit", self)
