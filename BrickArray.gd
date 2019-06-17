@@ -37,7 +37,7 @@ func create_brick(x, y):
 func _on_brick_destroyed(var brick, var ball):
 	
 	brick_count -= 1
-	
+	get_parent().get_node("Hud").update_brick_count(brick_count)
 	if (brick_count == 0):
 		# Doesn't stop the ball here, but on the next collision
 		ball.speed = 0
