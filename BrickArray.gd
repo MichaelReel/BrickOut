@@ -7,6 +7,9 @@ export (Vector2) var brick_dimensions = Vector2(64,32)
 #var bricks : Array = []
 var brick_scene : = load("res://Brick.tscn")
 var brick_count = 0
+var score = 0
+
+var hud
 
 func _ready():
 	# Find the center of the 'playable' area
@@ -23,6 +26,9 @@ func _ready():
 		for col in row_brick_count:
 			var x : int = center_of_bricks.x - (row_brick_count * brick_dimensions.x / 2) + (col * brick_dimensions.x) + brick_dimensions.x / 2
 			create_brick(x, y)
+	
+	hud = get_parent().get_node("Hud")
+	hud.update_brick_count(brick_count)
 
 func create_brick(x, y):
 	var brick : Brick = brick_scene.instance()
@@ -37,7 +43,11 @@ func create_brick(x, y):
 func _on_brick_destroyed(var brick, var ball):
 	
 	brick_count -= 1
-	get_parent().get_node("Hud").update_brick_count(brick_count)
+	hud.update_brick_count(brick_count)
+	
+	score += ball.speed
+	hud.update_score(score)
+	
 	if (brick_count == 0):
 		# Doesn't stop the ball here, but on the next collision
 		ball.speed = 0

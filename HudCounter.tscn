@@ -1,0 +1,52 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://HudCounter.gd" type="Script" id=1]
+[ext_resource path="res://ui/numbers.png" type="Texture" id=2]
+
+[node name="BrickCount" type="Node2D"]
+position = Vector2( 16, 16 )
+script = ExtResource( 1 )
+
+[node name="digit_8" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+hframes = 10
+
+[node name="digit_7" type="Sprite" parent="."]
+position = Vector2( 20, 0 )
+texture = ExtResource( 2 )
+hframes = 10
+
+[node name="digit_6" type="Sprite" parent="."]
+position = Vector2( 40, 0 )
+texture = ExtResource( 2 )
+hframes = 10
+
+[node name="digit_5" type="Sprite" parent="."]
+position = Vector2( 60, 0 )
+texture = ExtResource( 2 )
+hframes = 10
+
+[node name="digit_4" type="Sprite" parent="."]
+position = Vector2( 80, 0 )
+texture = ExtResource( 2 )
+hframes = 10
+
+[node name="digit_3" type="Sprite" parent="."]
+position = Vector2( 100, 0 )
+texture = ExtResource( 2 )
+hframes = 10
+
+[node name="digit_2" type="Sprite" parent="."]
+position = Vector2( 120, 0 )
+texture = ExtResource( 2 )
+hframes = 10
+
+[node name="digit_1" type="Sprite" parent="."]
+position = Vector2( 140, 0 )
+texture = ExtResource( 2 )
+hframes = 10
+
+[node name="digit_0" type="Sprite" parent="."]
+position = Vector2( 160, 0 )
+texture = ExtResource( 2 )
+hframes = 10
