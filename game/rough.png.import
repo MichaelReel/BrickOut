@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/rough.png-2ef6381e8ef749acd37afe0e6f2aa895.stex"
+path="res://.import/rough.png-944cccdc42bd2bc258f8082d4398d1f2.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://rough.png"
-dest_files=[ "res://.import/rough.png-2ef6381e8ef749acd37afe0e6f2aa895.stex" ]
+source_file="res://game/rough.png"
+dest_files=[ "res://.import/rough.png-944cccdc42bd2bc258f8082d4398d1f2.stex" ]
 
 [params]
 

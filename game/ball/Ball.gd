@@ -25,7 +25,9 @@ func fell_out():
 	# Mod scores or lives or whatever
 	balls_lost += 1
 	hud.update_lost_balls(balls_lost)
+	reset()
 	
+func reset():
 	# Reset the state
 	speed = init_speed
 	position = init_position

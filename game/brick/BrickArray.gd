@@ -4,19 +4,21 @@ export (int) var max_bricks_per_row   = 16
 export (int) var max_brick_rows       = 7
 export (Vector2) var brick_dimensions = Vector2(64,32)
 
-#var bricks : Array = []
-var brick_scene : = load("res://Brick.tscn")
-var brick_count = 0
-var score = 0
+var center_of_bricks : Vector2
+
+var brick_scene : = load("res://game/brick/Brick.tscn")
+var brick_count : int = 0
+var score : int = 0
 
 var hud
 
 func _ready():
 	# Find the center of the 'playable' area
-	var center_of_bricks : Vector2 = Vector2(get_viewport().size.x / 2 ,max_brick_rows * brick_dimensions.y)
+	center_of_bricks = Vector2(get_viewport().size.x / 2 ,max_brick_rows * brick_dimensions.y)
 	# Place a bunch of bricks and make sure we monitor how many are left
 	randomize()
-	
+
+func reset():
 	# Create each row
 	for row in max_brick_rows:
 		var y : int = center_of_bricks.y - (max_brick_rows * brick_dimensions.y / 2) + (row * brick_dimensions.y) + brick_dimensions.y / 2
@@ -38,7 +40,6 @@ func create_brick(x, y):
 	
 	get_parent().call_deferred("add_child", brick)
 	brick_count += 1
-#	bricks.append(brick)
 
 func _on_brick_destroyed(var brick, var ball):
 	

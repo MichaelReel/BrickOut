@@ -12,17 +12,17 @@ _global_script_classes=[ {
 "base": "KinematicBody2D",
 "class": "Ball",
 "language": "GDScript",
-"path": "res://Ball.gd"
+"path": "res://game/ball/Ball.gd"
 }, {
 "base": "StaticBody2D",
 "class": "Brick",
 "language": "GDScript",
-"path": "res://Brick.gd"
+"path": "res://game/brick/Brick.gd"
 }, {
 "base": "KinematicBody2D",
 "class": "Paddle",
 "language": "GDScript",
-"path": "res://Paddle.gd"
+"path": "res://game/paddle/Paddle.gd"
 } ]
 _global_script_class_icons={
 "Ball": "",
@@ -33,7 +33,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Brick Out"
-run/main_scene="res://PlayField.tscn"
+run/main_scene="res://Root.tscn"
 config/icon="res://icon.png"
 
 [rendering]
