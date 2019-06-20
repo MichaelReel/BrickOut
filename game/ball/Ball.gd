@@ -28,10 +28,17 @@ func fell_out():
 	reset()
 	
 func reset():
+	# Reset dropped ball count
+	balls_lost = 0
+	
 	# Reset the state
 	speed = init_speed
 	position = init_position
 	velocity = init_velocity
+	
+	# Update HUD
+	hud.update_lost_balls(balls_lost)
+	hud.update_ball_speed(speed)
 	
 
 func _physics_process(delta):

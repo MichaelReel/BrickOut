@@ -6,9 +6,11 @@ export (int) var speed = 300
 
 var velocity : Vector2
 var init_position : Vector2
+var init_speed : int
 
 func _ready():
 	init_position = position
+	init_speed = speed
 
 func get_input():
 	velocity = Vector2()
@@ -25,3 +27,4 @@ func _physics_process(delta):
 
 func reset():
 	position = init_position
+	speed = init_speed

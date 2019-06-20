@@ -1,11 +1,10 @@
 extends Node2D
 
-
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	print ("_ready")
 	$MenuScreen.connect("start_button", self, "start_new_game")
+	$MenuScreen.connect("resume_button", self, "resume")
+	$PlayField.connect("pause_button", self, "pause")
 	pause()
 
 func pause():
@@ -20,5 +19,6 @@ func resume():
 
 func start_new_game():
 	print ("Start signal received")
-	resume()
+	$PlayField.get_tree().paused = false
 	$PlayField.reset()
+	$MenuScreen.visible = false
