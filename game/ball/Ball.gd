@@ -25,12 +25,14 @@ func fell_out():
 	# Mod scores or lives or whatever
 	balls_lost += 1
 	hud.update_lost_balls(balls_lost)
-	reset()
+	positioning_reset()
 	
 func reset():
 	# Reset dropped ball count
 	balls_lost = 0
-	
+	positioning_reset()
+
+func positioning_reset():
 	# Reset the state
 	speed = init_speed
 	position = init_position

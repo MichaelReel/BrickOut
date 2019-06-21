@@ -18,19 +18,15 @@ margin_top = 80.0
 margin_right = 904.0
 margin_bottom = 520.0
 
-[node name="StartButton" type="MenuButton" parent="VBoxContainer"]
+[node name="StartButton" type="Button" parent="VBoxContainer"]
 margin_right = 784.0
 margin_bottom = 20.0
-action_mode = 1
 text = "Start"
-flat = false
 
-[node name="ResumeButton" type="MenuButton" parent="VBoxContainer"]
+[node name="ResumeButton" type="Button" parent="VBoxContainer"]
 margin_top = 24.0
 margin_right = 784.0
 margin_bottom = 44.0
-action_mode = 1
 text = "Resume"
-flat = false
 [connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_Start_pressed"]
 [connection signal="pressed" from="VBoxContainer/ResumeButton" to="." method="_on_ResumeButton_pressed"]
