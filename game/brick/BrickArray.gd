@@ -1,8 +1,10 @@
 extends Node2D
 
-export (int) var max_bricks_per_row   = 16
-export (int) var max_brick_rows       = 7
+export (int) var max_bricks_per_row   = 3 # 17
+export (int) var max_brick_rows       = 1 # 5
 export (Vector2) var brick_dimensions = Vector2(64,32)
+
+signal bricks_cleared
 
 var center_of_bricks : Vector2
 var brick_list : Array
@@ -61,7 +63,9 @@ func _on_brick_destroyed(var brick, var ball):
 	if (brick_list.size() == 0):
 		# Doesn't stop the ball here, but on the next collision
 		ball.speed = 0
+		ball.velocity = Vector2()
 		# Add/Display score, ect
+		emit_signal("bricks_cleared", score)
 		
 	else:
 		ball.speed += 10

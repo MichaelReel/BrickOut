@@ -41,7 +41,6 @@ func positioning_reset():
 	# Update HUD
 	hud.update_lost_balls(balls_lost)
 	hud.update_ball_speed(speed)
-	
 
 func _physics_process(delta):
 	var collision : KinematicCollision2D = move_and_collide(velocity * delta)

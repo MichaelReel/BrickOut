@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://menu/high_score/NameDialog.gd" type="Script" id=1]
+
+[node name="Control" type="AcceptDialog"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+dialog_text = "Enter name for highscore table:"
+script = ExtResource( 1 )
+
+[node name="LineEdit" type="LineEdit" parent="."]
+margin_left = 8.0
+margin_top = 22.0
+margin_right = 1016.0
+margin_bottom = 564.0
+placeholder_text = "Name"
+caret_blink = true
+[connection signal="confirmed" from="." to="." method="_on_Control_confirmed"]
