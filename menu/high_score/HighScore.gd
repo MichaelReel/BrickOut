@@ -18,11 +18,13 @@ func load_high_scores():
 		scores_file.open("user://" + file_name, File.READ)
 		high_score_table = parse_json(scores_file.get_line())
 
-func insert_new_highscore(name : String, score : int):
+func insert_new_highscore(name : String, score : int, update_display := true):
+	var date = OS.get_datetime()
 	print ("Inserting highscore: " + name + " : " + str(score))
-	place_sorted_highscore({ "name" : name, "date" : "beginning of time", "score" : score })
+	place_sorted_highscore({ "name" : name, "date" : date, "score" : score })
 	save_high_scores()
-	display_high_scores()
+	if update_display:
+		display_high_scores()
 
 func save_high_scores():
 	print ("'Saving' high scores")
@@ -35,9 +37,9 @@ func display_high_scores():
 	for child in get_children():
 		child.queue_free()
 	for score_entry in high_score_table:
-		var name_label = create_field(score_entry["name"])
-		var date_label = create_field(score_entry["date"])
 		var score_label = create_field(str(score_entry["score"]))
+		var name_label = create_field(score_entry["name"])
+		var date_label = create_field(date_format(score_entry["date"]))
 
 func create_field(text : String):
 	var label = RichTextLabel.new()
@@ -46,11 +48,16 @@ func create_field(text : String):
 	label.text = text
 	self.add_child(label)
 
+func date_format(date : Dictionary):
+	var format_string = "{year}/{month}/{day} {hour}:{minute}:{second}"
+	return format_string.format(date)
+
 func setup_mock_highscores():
 	high_score_table = []
-	place_sorted_highscore({ "name" : "Frick Bace", "date" : "beginning of time", "score" : 20000 })
-	place_sorted_highscore({ "name" : "Card Hoded", "date" : "beginning of time", "score" : 15000 })
-	place_sorted_highscore({ "name" : "Mumbles", "date" : "beginning of time", "score" : 10000 })
+	var date = OS.get_datetime()
+	insert_new_highscore("Frick Bace", 20000, false)
+	insert_new_highscore("Card Hoded", 15000, false)
+	insert_new_highscore("Mumbles", 10000, true)
 
 func place_sorted_highscore(highscore : Dictionary):
 	var ind = high_score_table.bsearch_custom(highscore, self, "high_score_sort")
