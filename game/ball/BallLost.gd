@@ -1,5 +1,6 @@
 extends StaticBody2D
 
-func hit(ball : KinematicBody2D):
-	if ball.has_method("fell_out"):
-		ball.call_deferred("fell_out")
+signal fell_out
+
+func hit(item : KinematicBody2D):
+	emit_signal("fell_out", item)

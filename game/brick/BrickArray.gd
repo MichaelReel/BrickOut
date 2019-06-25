@@ -1,15 +1,17 @@
 extends Node2D
 
-export (int) var max_bricks_per_row   = 3 # 17
-export (int) var max_brick_rows       = 1 # 5
+export (int) var max_bricks_per_row   = 16 # 16
+export (int) var max_brick_rows       = 5 # 5
 export (Vector2) var brick_dimensions = Vector2(64,32)
 
 signal bricks_cleared
+signal brick_broken
 
 var center_of_bricks : Vector2
 var brick_list : Array
 
 var brick_scene : = load("res://game/brick/Brick.tscn")
+var brick_destroyed : = load("res://game/brick/BrickBroken.tscn")
 var score : int = 0
 
 var hud
@@ -70,4 +72,13 @@ func _on_brick_destroyed(var brick, var ball):
 	else:
 		ball.speed += 10
 	
+	create_brick_death(brick)
+	emit_signal("brick_broken", brick.position)
 	brick.queue_free()
+
+func create_brick_death(brick):
+	var brick_death = brick_destroyed.instance()
+	brick_death.position = brick.position
+	get_parent().call_deferred("add_child", brick_death)
+	
+	
