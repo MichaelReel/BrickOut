@@ -2,10 +2,10 @@ extends KinematicBody2D
 
 class_name Ball
 
-export (int) var speed = 260
+export (float) var speed = 260
 var velocity = Vector2(-1,-1).normalized() * speed
 
-var init_speed : int
+var init_speed : float
 var init_position : Vector2
 var init_velocity : Vector2
 

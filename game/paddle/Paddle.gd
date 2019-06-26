@@ -1,4 +1,4 @@
-extends KinematicBody2D
+extends StaticBody2D
 
 class_name Paddle
 
@@ -16,9 +16,11 @@ func _ready():
 	init_speed = speed
 	hud = get_parent().get_node("Hud")
 	hud.update_paddle_speed(speed)
+	velocity = Vector2()
 
 func get_input():
-	velocity = Vector2()
+	velocity.y = 0
+	velocity.x = 0
 	if Input.is_action_pressed('ui_right'):
 		velocity.x += 1
 	if Input.is_action_pressed('ui_left'):
@@ -27,7 +29,7 @@ func get_input():
 
 func _physics_process(delta):
 	get_input()
-	move_and_collide(velocity * delta)
+	position.x += velocity.x * delta
 	position.y = init_position.y # Don't move up or down
 	
 	hud.update_paddle_speed(speed)

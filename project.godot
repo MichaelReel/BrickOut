@@ -19,7 +19,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://game/brick/Brick.gd"
 }, {
-"base": "KinematicBody2D",
+"base": "StaticBody2D",
 "class": "Paddle",
 "language": "GDScript",
 "path": "res://game/paddle/Paddle.gd"
