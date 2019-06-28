@@ -29,7 +29,9 @@ func get_input():
 
 func _physics_process(delta):
 	get_input()
-	position.x += velocity.x * delta
+	var new_pos_x = position.x + (velocity.x * delta)
+	if (new_pos_x < OS.window_size.x and new_pos_x >= 0):
+		position.x += velocity.x * delta
 	position.y = init_position.y # Don't move up or down
 	
 	hud.update_paddle_speed(speed)
