@@ -23,11 +23,17 @@ _global_script_classes=[ {
 "class": "Paddle",
 "language": "GDScript",
 "path": "res://game/paddle/Paddle.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "PowerUp",
+"language": "GDScript",
+"path": "res://game/power_up/PowerUp.gd"
 } ]
 _global_script_class_icons={
 "Ball": "",
 "Brick": "",
-"Paddle": ""
+"Paddle": "",
+"PowerUp": ""
 }
 
 [application]

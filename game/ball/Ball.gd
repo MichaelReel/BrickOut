@@ -10,6 +10,9 @@ var init_position : Vector2
 var init_velocity : Vector2
 
 var balls_lost : int = 0
+var hard_ball : bool = false
+var stuck : bool = false
+
 var hud
 
 func _ready():
@@ -43,13 +46,16 @@ func positioning_reset():
 	hud.update_ball_speed(speed)
 
 func _physics_process(delta):
-	var collision : KinematicCollision2D = move_and_collide(velocity * delta)
-	if collision:
-		# Get the normal of the collider and apply the "bounce"
-		velocity = velocity.bounce(collision.normal)
-		velocity = velocity.normalized() * speed
-		
-		if (collision.collider.has_method("hit")):
-			collision.collider.call_deferred("hit", self)
 	
+	if not stuck:
+		var collision : KinematicCollision2D = move_and_collide(velocity * delta)
+		if collision:
+			if (collision.collider.has_method("hit")):
+				collision.collider.call_deferred("hit", self)
+			
+			if not hard_ball and not stuck:
+				# Get the normal of the collider and apply the "bounce"
+				velocity = velocity.bounce(collision.normal)
+				velocity = velocity.normalized() * speed
+
 	hud.update_ball_speed(speed)
