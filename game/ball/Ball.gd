@@ -13,6 +13,8 @@ var balls_lost : int = 0
 var hard_ball : bool = false
 var stuck : bool = false
 
+var brick_bounce_mask = 4
+
 var hud
 
 func _ready():
@@ -23,6 +25,8 @@ func _ready():
 	hud = get_parent().get_node("Hud")
 	hud.update_lost_balls(balls_lost)
 	hud.update_ball_speed(speed)
+	
+	print ("mask: " + str(collision_mask))
 
 func fell_out():
 	# Mod scores or lives or whatever
@@ -41,6 +45,8 @@ func positioning_reset():
 	position = init_position
 	velocity = init_velocity
 	
+	set_hard(false)
+	
 	# Update HUD
 	hud.update_lost_balls(balls_lost)
 	hud.update_ball_speed(speed)
@@ -53,9 +59,20 @@ func _physics_process(delta):
 			if (collision.collider.has_method("hit")):
 				collision.collider.call_deferred("hit", self)
 			
-			if not hard_ball and not stuck:
+			if not stuck and not hard_ball:
 				# Get the normal of the collider and apply the "bounce"
 				velocity = velocity.bounce(collision.normal)
 				velocity = velocity.normalized() * speed
+			
+			if hard_ball and not collision.collider.has_method("hit"):
+				# Still bounce off non-bricks
+				velocity = velocity.bounce(collision.normal)
+				velocity = velocity.normalized() * speed
+				
 
 	hud.update_ball_speed(speed)
+
+func set_hard(h : bool):
+	hard_ball = h
+	$anim.play("hard" if hard_ball else "normal")
+	

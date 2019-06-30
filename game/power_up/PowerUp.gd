@@ -4,7 +4,7 @@ class_name PowerUp
 signal power_up
 
 enum Power_Type { SPEED, WIDTH, HARD, STICKY }
-const POWER_PROBABILITIES = { Power_Type.SPEED: 25, Power_Type.WIDTH: 25, Power_Type.HARD: 25, Power_Type.STICKY: 25}
+const POWER_PROBABILITIES = { Power_Type.SPEED: 25, Power_Type.WIDTH: 5, Power_Type.HARD: 1, Power_Type.STICKY: 2}
 const POWER_ANIMATIONS = {
 		Power_Type.SPEED: "power_up_speed",
 		Power_Type.WIDTH: "power_up_width", 

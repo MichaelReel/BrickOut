@@ -33,7 +33,7 @@ func on_power_up(power_up, collider):
 		elif power_up.type == PowerUp.Power_Type.WIDTH:
 			paddle.width_set(paddle.width + 1)
 		elif power_up.type == PowerUp.Power_Type.HARD:
-			pass
+			ball.set_hard(true)
 		elif power_up.type == PowerUp.Power_Type.STICKY:
 			paddle.set_sticky(3)
 	# Paddle or ball lost pit, remove powerup

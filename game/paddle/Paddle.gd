@@ -54,6 +54,7 @@ func reset():
 func strip_powerups():
 	speed_reset()
 	width_set(init_width)
+	set_sticky(0)
 	
 func speed_reset():
 	speed = init_speed
