@@ -4,6 +4,9 @@ class_name Paddle
 
 export (float) var speed = 300
 export (int) var width = 1 
+export (float) var mouse_lag = 5
+
+var mouse_down: bool = false
 
 var velocity : Vector2
 var init_position : Vector2
@@ -30,8 +33,20 @@ func get_input():
 	velocity.x = 0
 	if Input.is_action_pressed('ui_right'):
 		velocity.x = 1
-	if Input.is_action_pressed('ui_left'):
+	elif Input.is_action_pressed('ui_left'):
 		velocity.x = -1
+	elif Input.is_mouse_button_pressed(BUTTON_LEFT):
+		if not mouse_down:
+			if ball_stuck:
+				release_ball()
+			mouse_down = true
+		var pos_x = get_viewport().get_mouse_position().x
+		if pos_x > position.x + mouse_lag:
+			velocity.x = 1
+		elif pos_x < position.x - mouse_lag:
+			velocity.x = -1
+	else:
+		mouse_down = false
 	if ball_stuck and Input.is_action_pressed('ui_up'):
 		release_ball()
 	velocity = velocity.normalized() * speed
@@ -74,7 +89,13 @@ func width_set(w : int):
 
 func release_ball():
 	# Mess with the ball velocity a bit
-	ball_stuck.velocity = Vector2(velocity.x, -1).normalized() * ball_stuck.speed
+	var spin : float = 0
+	if Input.is_mouse_button_pressed(BUTTON_LEFT):
+		spin = get_viewport().get_mouse_position().x - position.x
+	else:
+		spin = velocity.x
+	ball_stuck.velocity = Vector2(spin, -1).normalized() * ball_stuck.speed
+	
 	# Release it
 	ball_stuck.stuck = false
 	ball_stuck = null
