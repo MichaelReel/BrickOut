@@ -17,6 +17,8 @@ func reset():
 func _physics_process(delta):
 	if Input.is_action_pressed('ui_cancel'):
 		emit_signal("pause_button")
+	elif Input.is_action_pressed('ui_focus_next'):
+		emit_signal("game_cleared", $BrickArray.score)
 
 func game_complete(score : int):
 	$PowerUpArray.clear_power_ups()

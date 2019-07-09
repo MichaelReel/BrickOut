@@ -49,8 +49,8 @@ func create_field(text : String):
 	self.add_child(label)
 
 func date_format(date : Dictionary):
-	var format_string = "{year}/{month}/{day} {hour}:{minute}:{second}"
-	return format_string.format(date)
+	var format_string = "%04d/%02d/%02d %02d:%02d:%02d"
+	return format_string % [ date["year"], date["month"], date["day"], date["hour"], date["minute"], date["second"] ]
 
 func setup_mock_highscores():
 	high_score_table = []

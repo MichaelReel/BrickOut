@@ -15,4 +15,5 @@ margin_right = 1016.0
 margin_bottom = 564.0
 placeholder_text = "Name"
 caret_blink = true
+[connection signal="about_to_show" from="." to="." method="_on_Control_about_to_show"]
 [connection signal="confirmed" from="." to="." method="_on_Control_confirmed"]
